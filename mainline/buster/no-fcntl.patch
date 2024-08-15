@@ -1,0 +1,18 @@
+diff --git a/src/os/unix/ngx_process.c b/src/os/unix/ngx_process.c
+index 15680237a..e8af08e35 100644
+--- a/src/os/unix/ngx_process.c
++++ b/src/os/unix/ngx_process.c
+@@ -150,13 +150,6 @@ ngx_spawn_process(ngx_cycle_t *cycle, ngx_spawn_proc_pt proc, void *data,
+             return NGX_INVALID_PID;
+         }
+ 
+-        if (fcntl(ngx_processes[s].channel[0], F_SETOWN, ngx_pid) == -1) {
+-            ngx_log_error(NGX_LOG_ALERT, cycle->log, ngx_errno,
+-                          "fcntl(F_SETOWN) failed while spawning \"%s\"", name);
+-            ngx_close_channel(ngx_processes[s].channel, cycle->log);
+-            return NGX_INVALID_PID;
+-        }
+-
+         if (fcntl(ngx_processes[s].channel[0], F_SETFD, FD_CLOEXEC) == -1) {
+             ngx_log_error(NGX_LOG_ALERT, cycle->log, ngx_errno,
+                           "fcntl(FD_CLOEXEC) failed while spawning \"%s\"",

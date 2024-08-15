@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec docker buildx build "$@" -t ghcr.io/st3iny/nginx:1.19.1-buster -f Dockerfile .
